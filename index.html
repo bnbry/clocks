@@ -101,13 +101,13 @@
         let activations = ["it-is"];
         document.querySelector(`[data-target="it-is"]`).classList.add('active');
 
-        let direction = "past";
+        let direction =["past"];
 
         // minutes
         if (currentMinute >= 33) {
           currentMinute = 60 - currentMinute;
           currentHour += 1;
-          direction = "to";
+          direction = ["to"];
 
           if (currentHour > 23) {
             currentHour = 0;
@@ -117,12 +117,12 @@
         currentMinute = Math.round(currentMinute / 5) * 5;
 
         if (currentMinute == 0) {
-          direction = "none";
+          direction = [];
         }
 
         const minuteTargets = minutes[currentMinute];
 
-        activations = [...activations, ...minuteTargets, direction]
+        activations = [...activations, ...minuteTargets, ...direction]
 
         // hour
         const hourTarget = hours[currentHour];
@@ -132,8 +132,6 @@
         }
 
         activations = [...activations, hourTarget];
-
-        console.log(currentHour, currentMinute);
 
         activations.forEach(target => {
           document.querySelector(`[data-target="${target}"]`).classList.add('active');
