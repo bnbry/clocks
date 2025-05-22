@@ -23,16 +23,19 @@
         font-optical-sizing: auto;
         font-weight: normal;
         font-style: normal;
-        font-size: 12vh;
-        color: #3a3a4a;
+        font-size: 9vh;
+        line-height: 9vh;
+        color: #2f2f3f;
         background-color: #101020;
       }
 
       main {
-        height: 100%;
-        width: 100%;
-        padding: 1%;
+        max-height: 90%;
+        max-width: 90%;
+        width: 90vh;
         text-align: justify;
+        aspect-ratio: 1/1;
+        margin: auto auto;
       }
 
       .clock-text.active {
@@ -48,6 +51,7 @@
       <span data-target="it-is" class="clock-text active">IT IS</span>
       <span data-target="half" class="clock-text">HALF</span>
       <span data-target="ten" class="clock-text">TEN</span>
+      <span data-target="quarter" class="clock-text">QUARTER</span>
       <span data-target="twenty" class="clock-text">TWENTY</span>
       <span data-target="five" class="clock-text">FIVE</span>
       <span data-target="minutes" class="clock-text">MINUTES</span>
