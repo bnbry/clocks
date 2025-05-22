@@ -23,19 +23,20 @@
         font-optical-sizing: auto;
         font-weight: normal;
         font-style: normal;
-        font-size: 9vh;
-        line-height: 9vh;
+        font-size: 9.5vmin;
+        line-height: 9.5vmin;
         color: #2f2f3f;
         background-color: #101020;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       main {
-        max-height: 90%;
-        max-width: 90%;
-        width: 90vh;
+        max-height: 90vh;
+        max-width: 90vw;
         text-align: justify;
-        aspect-ratio: 1/1;
-        margin: auto auto;
+        margin: auto;
       }
 
       .clock-text.active {
@@ -70,6 +71,7 @@
       <span data-target="eleven" class="clock-text">ELEVEN</span>
       <span data-target="noon" class="clock-text">NOON</span>
       <span data-target="midnight" class="clock-text">MIDNIGHT</span>
+      <span data-target="o-clock" class="clock-text">O'CLOCK</span>
     </main>
     <footer>
     </footer>
@@ -96,6 +98,7 @@
           text.classList.remove('active');
         });
 
+        let activations = ["it-is"];
         document.querySelector(`[data-target="it-is"]`).classList.add('active');
 
         let direction = "past";
@@ -113,20 +116,28 @@
 
         currentMinute = Math.round(currentMinute / 5) * 5;
 
-        const minute = minutes[currentMinute];
+        if (currentMinute == 0) {
+          direction = "none";
+        }
 
-        minute.forEach(text => {
-          document.querySelector(`[data-target="${text}"]`).classList.add('active');
-        });
+        const minuteTargets = minutes[currentMinute];
 
-        // past or to
-        document.querySelector(`[data-target="${direction}"]`).classList.add('active');
+        activations = [...activations, ...minuteTargets, direction]
 
         // hour
-        const hour = hours[currentHour];
-        document.querySelector(`[data-target="${hour}"]`).classList.add('active');
+        const hourTarget = hours[currentHour];
+
+        if (currentHour != 0 || currentHour != 12) {
+          activations = [...activations, "o-clock"];
+        }
+
+        activations = [...activations, hourTarget];
 
         console.log(currentHour, currentMinute);
+
+        activations.forEach(target => {
+          document.querySelector(`[data-target="${target}"]`).classList.add('active');
+        });
 
         setTimeout(function () {
           updateClock();
