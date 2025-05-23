@@ -158,7 +158,7 @@
         const hourTarget = WORD_CLOCK_HOURS[adjustedHour];
 
         // Append "o-clock" to the standard activations if the hour is not midnight or noon
-        if (adjustedHour != 0 || adjustedHour != 12) {
+        if (!(adjustedHour == 0 || adjustedHour == 12)) {
           standardActivations = [...standardActivations, "o-clock"];
         }
 
