@@ -30,7 +30,7 @@
         font-weight: 500;
         font-size: 9.5vmin;
         line-height: 9.5vmin;
-        color: #050515;
+        color: #010111;
         background-color: #101020;
       }
 
@@ -43,6 +43,132 @@
 
       .word-clock .clock-text.active {
         color: #efefff;
+      }
+
+      /* Digital Clock Styles */
+      body.digital-clock {
+        background-color: #001510
+      }
+
+      .digital-clock main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .digital-clock .digit {
+        aspect-ratio: 1 / 2;
+        height: 240px;
+        position: relative;
+        margin: 20px;
+      }
+
+      .digital-clock .segment-horizontal {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+
+      .digital-clock .segment-horizontal:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -10px;
+        right: 4px;
+        bottom: auto;
+        left: 4px;
+        border-top: none;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #00eebb;
+        border-left: 10px solid transparent;
+      }
+
+      .digital-clock .segment-horizontal:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 4px;
+        bottom: auto;
+        left: 4px;
+        border-top: 10px solid #00eebb;
+        border-right: 10px solid transparent;
+        border-bottom: none;
+        border-left: 10px solid transparent;
+      }
+
+      .digital-clock .segment-one {
+        top: 0;
+      }
+
+      .digital-clock .segment-four {
+        top: 50%;
+      }
+
+      .digital-clock .segment-seven {
+        top: 100%;
+      }
+
+      .digital-clock .segment-vertical {
+        display: block;
+        position: absolute;
+      }
+
+      .digital-clock .segment-vertical.segment-two {
+        top: 0;
+        right: auto;
+        bottom: 50%;
+        left: 0;
+      }
+
+      .digital-clock .segment-vertical.segment-three {
+        top: 0;
+        right: 0;
+        bottom: 50%;
+        left: auto;
+      }
+
+      .digital-clock .segment-vertical.segment-five {
+        top: 50%;
+        right: auto;
+        bottom: 0;
+        left: 0;
+      }
+
+      .digital-clock .segment-vertical.segment-six {
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: auto;
+      }
+
+      .digital-clock .segment-vertical:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: auto;
+        bottom: 4px;
+        left: -10px;
+        border-top: 10px solid transparent;
+        border-right: 10px solid #00eebb;
+        border-bottom: 10px solid transparent;
+        border-left: none;
+      }
+
+      .digital-clock .segment-vertical:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: auto;
+        bottom: 4px;
+        left: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid #00eebb;
       }
     </style>
   </head>
@@ -116,6 +242,47 @@
           <span data-target="midnight" class="clock-text">MIDNIGHT</span>
           <span data-target="o-clock" class="clock-text">O'CLOCK</span>
         `,
+        digital: `
+          <div class="digit">
+            <div class="segment-horizontal segment-one"></div>
+            <div class="segment-vertical segment-two"></div>
+            <div class="segment-vertical segment-three"></div>
+            <div class="segment-horizontal segment-four"></div>
+            <div class="segment-vertical segment-five"></div>
+            <div class="segment-vertical segment-six"></div>
+            <div class="segment-horizontal segment-seven"></div>
+          </div>
+          <div class="digit">
+            <div class="segment-horizontal segment-one"></div>
+            <div class="segment-vertical segment-two"></div>
+            <div class="segment-vertical segment-three"></div>
+            <div class="segment-horizontal segment-four"></div>
+            <div class="segment-vertical segment-five"></div>
+            <div class="segment-vertical segment-six"></div>
+            <div class="segment-horizontal segment-seven"></div>
+          </div>
+          <div class="digit">
+            <div class="segment-horizontal segment-one"></div>
+            <div class="segment-vertical segment-two"></div>
+            <div class="segment-vertical segment-three"></div>
+            <div class="segment-horizontal segment-four"></div>
+            <div class="segment-vertical segment-five"></div>
+            <div class="segment-vertical segment-six"></div>
+            <div class="segment-horizontal segment-seven"></div>
+          </div>
+          <div class="digit">
+            <div class="segment-horizontal segment-one"></div>
+            <div class="segment-vertical segment-two"></div>
+            <div class="segment-vertical segment-three"></div>
+            <div class="segment-horizontal segment-four"></div>
+            <div class="segment-vertical segment-five"></div>
+            <div class="segment-vertical segment-six"></div>
+            <div class="segment-horizontal segment-seven"></div>
+          </div>
+        `,
+      }
+
+      const digitalClock = (currentHour, currentMinute, _currentSeconds) => {
       }
 
       const wordClock = (currentHour, currentMinute, _currentSeconds) => {
@@ -171,6 +338,7 @@
 
       const clockTypes = {
         word: wordClock,
+        digital: digitalClock,
       }
 
       const updateClock = () => {
