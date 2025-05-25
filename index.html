@@ -10,6 +10,7 @@
       :root {
         --digital-bg-color: #101510;
         --segment-color: #1a221a;
+        --segment-active-color: #00eebb;
       }
 
       * {
@@ -56,10 +57,8 @@
       }
 
       .digital-clock main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 2fr 2fr 1fr 2fr 2fr;
       }
 
       .digital-clock .digit {
@@ -71,65 +70,65 @@
       }
 
       /* zero */
-      .digital-clock .digit.zero .segment-one,
-      .digital-clock .digit.zero .segment-two,
-      .digital-clock .digit.zero .segment-three,
-      .digital-clock .digit.zero .segment-five,
-      .digital-clock .digit.zero .segment-six,
-      .digital-clock .digit.zero .segment-seven,
+      .digital-clock .digit.display-zero .segment-one,
+      .digital-clock .digit.display-zero .segment-two,
+      .digital-clock .digit.display-zero .segment-three,
+      .digital-clock .digit.display-zero .segment-five,
+      .digital-clock .digit.display-zero .segment-six,
+      .digital-clock .digit.display-zero .segment-seven,
       /* one */
-      .digital-clock .digit.one .segment-three,
-      .digital-clock .digit.one .segment-six,
+      .digital-clock .digit.display-one .segment-three,
+      .digital-clock .digit.display-one .segment-six,
       /* two */
-      .digital-clock .digit.two .segment-one,
-      .digital-clock .digit.two .segment-three,
-      .digital-clock .digit.two .segment-four,
-      .digital-clock .digit.two .segment-five,
-      .digital-clock .digit.two .segment-seven,
+      .digital-clock .digit.display-two .segment-one,
+      .digital-clock .digit.display-two .segment-three,
+      .digital-clock .digit.display-two .segment-four,
+      .digital-clock .digit.display-two .segment-five,
+      .digital-clock .digit.display-two .segment-seven,
       /* three */
-      .digital-clock .digit.three .segment-one,
-      .digital-clock .digit.three .segment-three,
-      .digital-clock .digit.three .segment-four,
-      .digital-clock .digit.three .segment-six,
-      .digital-clock .digit.three .segment-seven,
+      .digital-clock .digit.display-three .segment-one,
+      .digital-clock .digit.display-three .segment-three,
+      .digital-clock .digit.display-three .segment-four,
+      .digital-clock .digit.display-three .segment-six,
+      .digital-clock .digit.display-three .segment-seven,
       /* four */
-      .digital-clock .digit.four .segment-two,
-      .digital-clock .digit.four .segment-three,
-      .digital-clock .digit.four .segment-four,
-      .digital-clock .digit.four .segment-six,
+      .digital-clock .digit.display-four .segment-two,
+      .digital-clock .digit.display-four .segment-three,
+      .digital-clock .digit.display-four .segment-four,
+      .digital-clock .digit.display-four .segment-six,
       /* five */
-      .digital-clock .digit.five .segment-one,
-      .digital-clock .digit.five .segment-two,
-      .digital-clock .digit.five .segment-four,
-      .digital-clock .digit.five .segment-six,
-      .digital-clock .digit.five .segment-seven,
+      .digital-clock .digit.display-five .segment-one,
+      .digital-clock .digit.display-five .segment-two,
+      .digital-clock .digit.display-five .segment-four,
+      .digital-clock .digit.display-five .segment-six,
+      .digital-clock .digit.display-five .segment-seven,
       /* six */
-      .digital-clock .digit.six .segment-one,
-      .digital-clock .digit.six .segment-two,
-      .digital-clock .digit.six .segment-four,
-      .digital-clock .digit.six .segment-five,
-      .digital-clock .digit.six .segment-six,
-      .digital-clock .digit.six .segment-seven,
+      .digital-clock .digit.display-six .segment-one,
+      .digital-clock .digit.display-six .segment-two,
+      .digital-clock .digit.display-six .segment-four,
+      .digital-clock .digit.display-six .segment-five,
+      .digital-clock .digit.display-six .segment-six,
+      .digital-clock .digit.display-six .segment-seven,
       /* seven */
-      .digital-clock .digit.seven .segment-one,
-      .digital-clock .digit.seven .segment-three,
-      .digital-clock .digit.seven .segment-six,
+      .digital-clock .digit.display-seven .segment-one,
+      .digital-clock .digit.display-seven .segment-three,
+      .digital-clock .digit.display-seven .segment-six,
       /* eight */
-      .digital-clock .digit.eight .segment-one,
-      .digital-clock .digit.eight .segment-two,
-      .digital-clock .digit.eight .segment-three,
-      .digital-clock .digit.eight .segment-four,
-      .digital-clock .digit.eight .segment-five,
-      .digital-clock .digit.eight .segment-six,
-      .digital-clock .digit.eight .segment-seven,
+      .digital-clock .digit.display-eight .segment-one,
+      .digital-clock .digit.display-eight .segment-two,
+      .digital-clock .digit.display-eight .segment-three,
+      .digital-clock .digit.display-eight .segment-four,
+      .digital-clock .digit.display-eight .segment-five,
+      .digital-clock .digit.display-eight .segment-six,
+      .digital-clock .digit.display-eight .segment-seven,
       /* nine */
-      .digital-clock .digit.nine .segment-one,
-      .digital-clock .digit.nine .segment-two,
-      .digital-clock .digit.nine .segment-three,
-      .digital-clock .digit.nine .segment-four,
-      .digital-clock .digit.nine .segment-six,
-      .digital-clock .digit.nine .segment-seven {
-        --segment-color: #00eebb;
+      .digital-clock .digit.display-nine .segment-one,
+      .digital-clock .digit.display-nine .segment-two,
+      .digital-clock .digit.display-nine .segment-three,
+      .digital-clock .digit.display-nine .segment-four,
+      .digital-clock .digit.display-nine .segment-six,
+      .digital-clock .digit.display-nine .segment-seven {
+        --segment-color: var(--segment-active-color);
         z-index: 1;
         box-shadow:
           0px 0 45px 3px var(--segment-color),
@@ -242,6 +241,29 @@
         border-bottom: 10px solid transparent;
         border-left: 10px solid var(--segment-color);
       }
+
+      .digital-clock .separator {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        transform: skew(-5deg);
+      }
+
+      .digital-clock .colon {
+        border: 10px solid var(--segment-active-color);
+      }
+
+      @media (max-width: 700px) {
+        .digital-clock main {
+          display: grid;
+          grid-template-columns: 2fr 2fr;
+        }
+
+        .digital-clock .separator {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -285,7 +307,20 @@
         23: "eleven",
       }
 
-      let activeClockType = "word";
+      const DIGITAL_CLOCK_DIGITS = {
+        "0": "zero",
+        "1": "one",
+        "2": "two",
+        "3": "three",
+        "4": "four",
+        "5": "five",
+        "6": "six",
+        "7": "seven",
+        "8": "eight",
+        "9": "nine",
+      }
+
+      let activeClockType = "digital";
       let currentTimeoutId = null;
 
       const MARKUP = {
@@ -315,7 +350,7 @@
           <span data-target="o-clock" class="clock-text">O'CLOCK</span>
         `,
         digital: `
-          <div class="digit nine">
+          <div class="digit display-eight">
             <div class="segment-horizontal segment-one"></div>
             <div class="segment-vertical segment-two"></div>
             <div class="segment-vertical segment-three"></div>
@@ -324,7 +359,7 @@
             <div class="segment-vertical segment-six"></div>
             <div class="segment-horizontal segment-seven"></div>
           </div>
-          <div class="digit zero">
+          <div class="digit display-eight">
             <div class="segment-horizontal segment-one"></div>
             <div class="segment-vertical segment-two"></div>
             <div class="segment-vertical segment-three"></div>
@@ -333,7 +368,11 @@
             <div class="segment-vertical segment-six"></div>
             <div class="segment-horizontal segment-seven"></div>
           </div>
-          <div class="digit zero">
+          <div class="separator">
+            <div class="colon"></div>
+            <div class="colon"></div>
+          </div>
+          <div class="digit display-eight">
             <div class="segment-horizontal segment-one"></div>
             <div class="segment-vertical segment-two"></div>
             <div class="segment-vertical segment-three"></div>
@@ -342,16 +381,7 @@
             <div class="segment-vertical segment-six"></div>
             <div class="segment-horizontal segment-seven"></div>
           </div>
-          <div class="digit eight">
-            <div class="segment-horizontal segment-one"></div>
-            <div class="segment-vertical segment-two"></div>
-            <div class="segment-vertical segment-three"></div>
-            <div class="segment-horizontal segment-four"></div>
-            <div class="segment-vertical segment-five"></div>
-            <div class="segment-vertical segment-six"></div>
-            <div class="segment-horizontal segment-seven"></div>
-          </div>
-          <div class="digit five">
+          <div class="digit display-eight">
             <div class="segment-horizontal segment-one"></div>
             <div class="segment-vertical segment-two"></div>
             <div class="segment-vertical segment-three"></div>
@@ -364,6 +394,19 @@
       }
 
       const digitalClock = (currentHour, currentMinute, _currentSeconds) => {
+        let adjustedHour = currentHour;
+        if (adjustedHour > 12) {
+          adjustedHour = adjustedHour - 12;
+        }
+        adjustedHour = String(adjustedHour).padStart(2, "0");
+        let adjustedMinute = String(currentMinute).padStart(2, "0");
+
+        const digits = [...adjustedHour.split(""), ...adjustedMinute.split("")];
+
+        document.querySelectorAll(".digit").forEach((digit, index) => {
+          digit.className = "digit";
+          digit.classList.add(`display-${DIGITAL_CLOCK_DIGITS[digits[index]]}`);
+        });
       }
 
       const wordClock = (currentHour, currentMinute, _currentSeconds) => {
