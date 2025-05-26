@@ -31,15 +31,15 @@ BINARY_CLOCK_MARKUP = `
   </div>
 `;
 
+// Accepts the current hour, minute and second and updates the binary clock.
 const binaryClock = (currentHour, currentMinute, currentSeconds) => {
-  let adjustedHour = getBinaryDigits(currentHour);
-  let adjustedMinute = getBinaryDigits(currentMinute);
-  let adjustedSeconds = getBinaryDigits(currentSeconds);
-
+  const adjustedHour = getBinaryDigits(currentHour);
+  const adjustedMinute = getBinaryDigits(currentMinute);
+  const adjustedSeconds = getBinaryDigits(currentSeconds);
   const binaryDigits = [...adjustedHour, ...adjustedMinute, ...adjustedSeconds];
 
-  console.log(binaryDigits);
-
+  // We can use the order of binaryDigits and the selectors to activate the correct bits
+  // because the flow of bit-boxes uses CSS grid columns instead of rows.
   document.querySelectorAll(".bit").forEach((bit, index) => {
     bit.classList.remove("active");
 
@@ -49,10 +49,14 @@ const binaryClock = (currentHour, currentMinute, currentSeconds) => {
   });
 };
 
+// Accepts a number and returns an array of 1s and 0s representing each digit in the number
+// as 4 bits.
 const getBinaryDigits = (number) => {
+  // Pad digits to 2 places and then split into an array of digits
   let splitDigits = number.toString().padStart(2, "0").split("");
-  console.log(splitDigits);
 
+  // Convert each digit in the array to a binary string, pad to 4 places and
+  // then split and flatten the result
   return splitDigits.flatMap((digit) => {
     return parseInt(digit).toString(2).padStart(4, "0").split("");
   });
