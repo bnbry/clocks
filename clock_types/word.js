@@ -1,28 +1,44 @@
 const WORD_CLOCK_MARKUP = `
-  <span data-target="it-is" class="clock-text active">IT IS</span>
-  <span data-target="half" class="clock-text">HALF</span>
-  <span data-target="ten-minutes" class="clock-text">TEN</span>
-  <span data-target="quarter" class="clock-text">A QUARTER</span>
-  <span data-target="twenty" class="clock-text">TWENTY</span>
-  <span data-target="five-minutes" class="clock-text">FIVE</span>
-  <span data-target="minutes" class="clock-text">MINUTES</span>
-  <span data-target="to" class="clock-text">TO</span>
-  <span data-target="past" class="clock-text">PAST</span>
-  <span data-target="one" class="clock-text">ONE</span>
-  <span data-target="two" class="clock-text">TWO</span>
-  <span data-target="three" class="clock-text">THREE</span>
-  <span data-target="four" class="clock-text">FOUR</span>
-  <span data-target="five" class="clock-text">FIVE</span>
-  <span data-target="six" class="clock-text">SIX</span>
-  <span data-target="seven" class="clock-text">SEVEN</span>
-  <span data-target="eight" class="clock-text">EIGHT</span>
-  <span data-target="nine" class="clock-text">NINE</span>
-  <span data-target="ten" class="clock-text">TEN</span>
-  <span data-target="eleven" class="clock-text">ELEVEN</span>
-  <span data-target="noon" class="clock-text">NOON</span>
-  <span data-target="midnight" class="clock-text">MIDNIGHT</span>
-  <span data-target="o-clock" class="clock-text">O'CLOCK</span>
-`;
+    <span data-target="it-is" class="clock-text active">IT</span>
+    <span class="clock-test">H</span>
+    <span data-target="it-is" class="clock-text active">IS</span>
+    <span class="clock-text">TIME</span>
+    <span data-target="half" class="clock-text">HALF</span>
+    <span data-target="ten-minutes" class="clock-text">TEN</span>
+    <span data-target="quarter" class="clock-text">A</span>
+    <span class="clock-test">H</span>
+    <span data-target="quarter" class="clock-text">QUARTER</span>
+    <span data-target="twenty" class="clock-text">TWENTY</span>
+    <span class="clock-text">YOU</span>
+    <span data-target="five-minutes" class="clock-text">FIVE</span>
+    <span class="clock-test">M</span>
+    <span data-target="minutes" class="clock-text">MINUTES</span>
+    <span class="clock-text">ENJOY</span>
+    <span data-target="to" class="clock-text">TO</span>
+    <span class="clock-text">WASTING</span>
+    <span data-target="past" class="clock-text">PAST</span>
+    <span data-target="one" class="clock-text">ONE</span>
+    <span data-target="two" class="clock-text">TWO</span>
+    <span data-target="three" class="clock-text">THREE</span>
+    <span data-target="four" class="clock-text">FOUR</span>
+    <span class="clock-text">IS</span>
+    <span data-target="five" class="clock-text">FIVE</span>
+    <span data-target="six" class="clock-text">SIX</span>
+    <span data-target="seven" class="clock-text">SEVEN</span>
+    <span class="clock-text">NOT</span>
+    <span data-target="eight" class="clock-text">EIGHT</span>
+    <span data-target="nine" class="clock-text">NINE</span>
+    <span data-target="ten" class="clock-text">TEN</span>
+    <span class="clock-text">WASTED</span>
+    <span data-target="eleven" class="clock-text">ELEVEN</span>
+    <span data-target="midnight" class="clock-text">MIDNIGHT</span>
+    <span data-target="noon" class="clock-text">NOON</span>
+    <span class="clock-test">M</span>
+    <span class="clock-text">TIME</span>
+    <span data-target="o-clock" class="clock-text">O'CLOCK</span>
+  `
+  .replace(/>\s+</g, "><")
+  .trim();
 
 const WORD_CLOCK_MINUTES = {
   0: [],
@@ -113,6 +129,8 @@ const wordClock = (currentHour, currentMinute, _currentSeconds) => {
   ];
 
   activations.forEach((target) => {
-    document.querySelector(`[data-target="${target}"]`).classList.add("active");
+    document
+      .querySelectorAll(`[data-target="${target}"]`)
+      .forEach((el) => el.classList.add("active"));
   });
 };

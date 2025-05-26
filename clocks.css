@@ -71,8 +71,8 @@ a:active {
 /* Word Clock Styles */
 /* ======================================================================== */
 body.word-clock {
-  --active-color: #efefff;
-  --inactive-color: #010111;
+  --active-color: #FFFDE0;
+  --inactive-color: #01010C;
   --bg-color: #101020;
   background-color: var(--bg-color);
 }
@@ -80,13 +80,14 @@ body.word-clock {
 .word-clock main {
   max-height: 90vh;
   max-width: 90vw;
-  text-align: justify;
   margin: auto;
+  word-break: break-all;
   font-family: "DM Mono", monospace;
   font-weight: 500;
-  font-size: 9.5vmin;
+  font-size: 9vmin;
   line-height: 9.5vmin;
   color: var(--inactive-color);
+  aspect-ratio: 1 / 1;
 }
 
 .word-clock .clock-text.active {
