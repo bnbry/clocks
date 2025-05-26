@@ -52,6 +52,8 @@ const resetClock = (clockType) => {
   const main = document.querySelector("main");
   main.innerHTML = MARKUP[activeClockType];
 
+  initEventListeners();
+
   updateClock();
 };
 
@@ -61,12 +63,16 @@ const changeClockType = (event) => {
   resetClock(clockType);
 };
 
-// This function initializes the clock and sets up the markup
-const initClock = () => {
+// Initialize event listeners
+const initEventListeners = () => {
   const clockPickers = document.querySelectorAll("[data-role='clock-picker']");
   clockPickers.forEach((clockPicker) => {
     clockPicker.addEventListener("click", changeClockType);
   });
+};
 
+// This function initializes the clock and sets up the markup
+const initClock = () => {
+  activeClockType = "none";
   resetClock(activeClockType);
 };
