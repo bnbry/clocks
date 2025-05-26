@@ -316,3 +316,55 @@ body.digital-clock {
     display: none;
   }
 }
+
+
+/* Binary Clock Styles */
+/* ======================================================================== */
+body.binary-clock {
+  --bg-color: #151014;
+  --inactive-color: #221a22;
+  --active-color: #ee009f;
+}
+
+.binary-clock main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.binary-clock .binary-section {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  margin: 4vmin;
+}
+
+.binary-clock .bit-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2vmin;
+}
+
+.binary-clock .bit {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  width: 6vmin;
+  background-color: var(--inactive-color);
+}
+
+.binary-clock .bit.active {
+  background-color: var(--active-color);
+  animation: active-bit 350ms ease-in;
+}
+
+@keyframes active-bit {
+  0% {
+    background-color: var(--inactive-color);
+  }
+  100% {
+    background-color: var(--active-color);
+  }
+}

@@ -2,8 +2,18 @@ const NO_CLOCK_MARKUP = `
   <h1>Clocks | <span data-role="clock-digit">0</span><span data-role="clock-digit">0</span>:<span data-role="clock-digit">0</span><span data-role="clock-digit">0</span>:<span data-role="clock-digit">0</span><span data-role="clock-digit">0</span></h1>
   <p>This project is a series of explorations rendering different clock formats using HTML, CSS, and vanilla JavaScript. Explore the code at <a href="https://github.com/bnbry/clocks">github.com/bnbry/clocks</a> if you're into that.</p>
   <ul>
-    <li><a href="#" data-role="clock-picker" data-clock-type="digital">Digital</a><p>A seven segment digital display rendered with CSS Grid, Flexbox, absolute positioning and CSS borders.</p></li>
-    <li><a href="#" data-role="clock-picker" data-clock-type="word">Word</a><p>A word clock that represents time using highlighted word segments.</p></li>
+    <li>
+      <a href="#" data-role="clock-picker" data-clock-type="digital">Digital</a>
+      <p>A seven segment digital display rendered with CSS Grid, Flexbox, absolute positioning and CSS borders.</p>
+    </li>
+    <li>
+      <a href="#" data-role="clock-picker" data-clock-type="word">Word</a>
+      <p>A word clock that represents time using highlighted word segments.</p>
+    </li>
+    <li>
+      <a href="#" data-role="clock-picker" data-clock-type="binary">Binary</a>
+      <p>A binary clock that represents time by rendering each digit as a binary number on vertical byte columns. Uses CSS Grid and Flexbox for layout.</p>
+    </li>
   </ul>
 `;
 
@@ -11,14 +21,16 @@ let activeClockType = "none";
 let currentTimeoutId = null;
 
 const MARKUP = {
-  word: WORD_CLOCK_MARKUP,
+  binary: BINARY_CLOCK_MARKUP,
   digital: DIGITAL_CLOCK_MARKUP,
+  word: WORD_CLOCK_MARKUP,
   none: NO_CLOCK_MARKUP,
 };
 
 const CLOCK_TYPES = {
-  word: wordClock,
+  binary: binaryClock,
   digital: digitalClock,
+  word: wordClock,
   none: (currentHour, currentMinute, currentSeconds) => {
     let adjustedHour = currentHour;
     if (adjustedHour > 12) {
