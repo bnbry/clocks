@@ -1,5 +1,5 @@
 const NO_CLOCK_MARKUP = `
-  <h1>Clocks</h1>
+  <h1>Clocks | <span data-role="clock-digit">0</span><span data-role="clock-digit">0</span>:<span data-role="clock-digit">0</span><span data-role="clock-digit">0</span>:<span data-role="clock-digit">0</span><span data-role="clock-digit">0</span></h1>
   <p>This project is a series of explorations rendering different clock formats using HTML, CSS, and vanilla JavaScript. Explore the code at <a href="https://github.com/bnbry/clocks">github.com/bnbry/clocks</a> if you're into that.</p>
   <ul>
     <li><a href="#" data-role="clock-picker" data-clock-type="digital">Digital</a><p>A seven segment digital display rendered with CSS Grid, Flexbox, absolute positioning and CSS borders.</p></li>
@@ -19,7 +19,27 @@ const MARKUP = {
 const CLOCK_TYPES = {
   word: wordClock,
   digital: digitalClock,
-  none: () => {},
+  none: (currentHour, currentMinute, currentSeconds) => {
+    let adjustedHour = currentHour;
+    if (adjustedHour > 12) {
+      adjustedHour = adjustedHour - 12;
+    }
+    adjustedHour = String(adjustedHour).padStart(2, "0");
+    let adjustedMinute = String(currentMinute).padStart(2, "0");
+    let adjustedSeconds = String(currentSeconds).padStart(2, "0");
+
+    const digits = [
+      ...adjustedHour.split(""),
+      ...adjustedMinute.split(""),
+      ...adjustedSeconds.split(""),
+    ];
+
+    document
+      .querySelectorAll("[data-role='clock-digit']")
+      .forEach((digit, index) => {
+        digit.textContent = digits[index];
+      });
+  },
 };
 
 // This function handles the basic clock tick and delegates to the appropriate clock type for rendering
