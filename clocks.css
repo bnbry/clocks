@@ -1,0 +1,318 @@
+:root {
+  --bg-color: #101020;
+  --inactive-color: #010111;
+  --active-color: #00eebb;
+  --text-color: #e1e1f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+main {
+  max-width: 80%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 25px 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8em;
+}
+
+footer a {
+  margin: 0 10px;
+}
+
+a,
+a:visited {
+  color: var(--active-color);
+  text-decoration: underline dashed;
+  font-family: "DM Mono", monospace;
+}
+
+a:hover,
+a:focus,
+a:active {
+  text-decoration: underline;
+}
+
+/* Word Clock Styles */
+/* ======================================================================== */
+body.word-clock {
+  --active-color: #efefff;
+  --inactive-color: #010111;
+  --bg-color: #101020;
+  background-color: var(--bg-color);
+}
+
+.word-clock main {
+  max-height: 90vh;
+  max-width: 90vw;
+  text-align: justify;
+  margin: auto;
+  font-family: "DM Mono", monospace;
+  font-weight: 500;
+  font-size: 9.5vmin;
+  line-height: 9.5vmin;
+  color: var(--inactive-color);
+}
+
+.word-clock .clock-text.active {
+  color: var(--active-color);
+}
+
+/* Digital Clock Styles */
+/* ======================================================================== */
+body.digital-clock {
+  --bg-color: #101510;
+  --inactive-color: #1a221a;
+  --active-color: #00eebb;
+  --segment-color: var(--inactive-color);
+  background-color: var(--bg-color);
+}
+
+.digital-clock main {
+  max-width: none;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 2fr 2fr;
+}
+
+.digital-clock .digit {
+  aspect-ratio: 1 / 2;
+  height: 240px;
+  position: relative;
+  margin: 20px;
+  transform: skew(-5deg)
+}
+
+/* zero */
+.digital-clock .digit.display-zero .segment-one,
+.digital-clock .digit.display-zero .segment-two,
+.digital-clock .digit.display-zero .segment-three,
+.digital-clock .digit.display-zero .segment-five,
+.digital-clock .digit.display-zero .segment-six,
+.digital-clock .digit.display-zero .segment-seven,
+/* one */
+.digital-clock .digit.display-one .segment-three,
+.digital-clock .digit.display-one .segment-six,
+/* two */
+.digital-clock .digit.display-two .segment-one,
+.digital-clock .digit.display-two .segment-three,
+.digital-clock .digit.display-two .segment-four,
+.digital-clock .digit.display-two .segment-five,
+.digital-clock .digit.display-two .segment-seven,
+/* three */
+.digital-clock .digit.display-three .segment-one,
+.digital-clock .digit.display-three .segment-three,
+.digital-clock .digit.display-three .segment-four,
+.digital-clock .digit.display-three .segment-six,
+.digital-clock .digit.display-three .segment-seven,
+/* four */
+.digital-clock .digit.display-four .segment-two,
+.digital-clock .digit.display-four .segment-three,
+.digital-clock .digit.display-four .segment-four,
+.digital-clock .digit.display-four .segment-six,
+/* five */
+.digital-clock .digit.display-five .segment-one,
+.digital-clock .digit.display-five .segment-two,
+.digital-clock .digit.display-five .segment-four,
+.digital-clock .digit.display-five .segment-six,
+.digital-clock .digit.display-five .segment-seven,
+/* six */
+.digital-clock .digit.display-six .segment-one,
+.digital-clock .digit.display-six .segment-two,
+.digital-clock .digit.display-six .segment-four,
+.digital-clock .digit.display-six .segment-five,
+.digital-clock .digit.display-six .segment-six,
+.digital-clock .digit.display-six .segment-seven,
+/* seven */
+.digital-clock .digit.display-seven .segment-one,
+.digital-clock .digit.display-seven .segment-three,
+.digital-clock .digit.display-seven .segment-six,
+/* eight */
+.digital-clock .digit.display-eight .segment-one,
+.digital-clock .digit.display-eight .segment-two,
+.digital-clock .digit.display-eight .segment-three,
+.digital-clock .digit.display-eight .segment-four,
+.digital-clock .digit.display-eight .segment-five,
+.digital-clock .digit.display-eight .segment-six,
+.digital-clock .digit.display-eight .segment-seven,
+/* nine */
+.digital-clock .digit.display-nine .segment-one,
+.digital-clock .digit.display-nine .segment-two,
+.digital-clock .digit.display-nine .segment-three,
+.digital-clock .digit.display-nine .segment-four,
+.digital-clock .digit.display-nine .segment-six,
+.digital-clock .digit.display-nine .segment-seven {
+  --segment-color: var(--active-color);
+  z-index: 1;
+  box-shadow:
+    0px 0 45px 3px var(--segment-color),
+    0px 0 30px 1px var(--segment-color);
+}
+
+.digital-clock .segment-horizontal {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.digital-clock .segment-horizontal:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: 4px;
+  bottom: auto;
+  left: 4px;
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--segment-color);
+  border-left: 10px solid transparent;
+}
+
+.digital-clock .segment-horizontal:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 4px;
+  bottom: auto;
+  left: 4px;
+  border-top: 10px solid var(--segment-color);
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  border-left: 10px solid transparent;
+}
+
+.digital-clock .segment-one {
+  top: 0;
+}
+
+.digital-clock .segment-four {
+  top: 50%;
+}
+
+.digital-clock .segment-seven {
+  top: 100%;
+}
+
+.digital-clock .segment-vertical {
+  display: block;
+  position: absolute;
+}
+
+.digital-clock .segment-vertical.segment-two {
+  top: 0;
+  right: auto;
+  bottom: 50%;
+  left: 0;
+}
+
+.digital-clock .segment-vertical.segment-three {
+  top: 0;
+  right: 0;
+  bottom: 50%;
+  left: auto;
+}
+
+.digital-clock .segment-vertical.segment-five {
+  top: 50%;
+  right: auto;
+  bottom: 0;
+  left: 0;
+}
+
+.digital-clock .segment-vertical.segment-six {
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: auto;
+}
+
+.digital-clock .segment-vertical:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: auto;
+  bottom: 4px;
+  left: -10px;
+  border-top: 10px solid transparent;
+  border-right: 10px solid var(--segment-color);
+  border-bottom: 10px solid transparent;
+  border-left: none;
+}
+
+.digital-clock .segment-vertical:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: auto;
+  bottom: 4px;
+  left: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--segment-color);
+}
+
+.digital-clock .separator {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  transform: skew(-5deg);
+}
+
+.digital-clock .colon {
+  border: 10px solid var(--active-color);
+}
+
+@media (max-width: 700px) {
+  .digital-clock main {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+  }
+
+  .digital-clock .digit {
+    transform: skew(-3deg);
+  }
+
+  .digital-clock .separator {
+    display: none;
+  }
+}
